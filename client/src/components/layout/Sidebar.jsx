@@ -31,16 +31,16 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
           <button
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors ${
+            className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors text-left ${
               activeTab === item.id 
                 ? 'bg-white text-black dark:bg-[#1A1A1A] dark:text-white rounded-sm' 
                 : 'text-gray-300 hover:text-white hover:bg-gray-900 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-sm'
             }`}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
             </svg>
-            {item.label}
+            <span className="flex-1 text-left">{item.label}</span>
           </button>
         ))}
       </div>

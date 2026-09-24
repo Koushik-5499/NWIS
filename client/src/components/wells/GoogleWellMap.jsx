@@ -68,11 +68,11 @@ const GoogleWellMap = ({ activeWell, historicalWells, selectedWellId, onSelectWe
     );
   }
 
-  const getMarkerColor = (well) => {
-    if (well.id === selectedWellId) return '#3b82f6'; // blue for selected
-    if (well.severity === 'Critical' || well.severity === 'High') return '#ef4444'; // red
-    if (well.severity === 'Medium') return '#f59e0b'; // amber
-    return '#1f2937'; // dark neutral
+  const getMarkerBgClass = (well) => {
+    if (well.id === selectedWellId) return 'bg-blue-500 z-10 scale-125';
+    if (well.severity === 'Critical' || well.severity === 'High') return 'bg-red-500';
+    if (well.severity === 'Medium') return 'bg-amber-500';
+    return 'bg-gray-500 dark:bg-gray-400';
   };
 
   return (
@@ -94,8 +94,9 @@ const GoogleWellMap = ({ activeWell, historicalWells, selectedWellId, onSelectWe
               if (node) node.setAttribute('position', `${activeWell.latitude},${activeWell.longitude}`);
             }}
             title={activeWell.id}
-            style={{ '--gmp-marker-color': selectedWellId === activeWell.id ? '#3b82f6' : '#22c55e' }} // green or blue if selected
-          ></gmp-advanced-marker>
+          >
+            <div className={`w-4 h-4 rounded-full border-2 border-black shadow hover:scale-125 transition-transform cursor-pointer ${selectedWellId === activeWell.id ? 'bg-blue-500 z-10 scale-125' : 'bg-green-500'}`}></div>
+          </gmp-advanced-marker>
         )}
 
         {/* Historical Well Markers */}
@@ -106,8 +107,9 @@ const GoogleWellMap = ({ activeWell, historicalWells, selectedWellId, onSelectWe
               if (node) node.setAttribute('position', `${well.latitude},${well.longitude}`);
             }}
             title={well.id}
-            style={{ '--gmp-marker-color': getMarkerColor(well) }}
-          ></gmp-advanced-marker>
+          >
+            <div className={`w-4 h-4 rounded-full border-2 border-black shadow hover:scale-125 transition-transform cursor-pointer ${getMarkerBgClass(well)}`}></div>
+          </gmp-advanced-marker>
         ))}
       </gmp-map>
 
