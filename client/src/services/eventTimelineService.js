@@ -38,7 +38,16 @@ export function filterTimelineEvents(events, filters) {
 }
 
 export function getRiskZones() {
-  return RISK_ZONES;
+  const active = ACTIVE_WELL;
+  return RISK_ZONES.map(z => ({
+    ...z,
+    name: z.type + ' Zone',
+    eventType: z.type,
+    depthStart: z.startDepth,
+    depthEnd: z.endDepth,
+    formation: 'X Formation',
+    status: z.startDepth > active.currentDepth ? 'Approaching' : 'Passed'
+  }));
 }
 
 export function getEventsByWell(wellId) {
@@ -56,7 +65,7 @@ export function getEventsByDepth(minDepth, maxDepth) {
 export function getTimelineSummary() {
   const events = getTimelineEvents();
   const wells = [...new Set(events.map(e => e.wellId))];
-  const zones = RISK_ZONES;
+  const zones = getRiskZones();
   const active = ACTIVE_WELL;
 
   // Find nearest approaching zone

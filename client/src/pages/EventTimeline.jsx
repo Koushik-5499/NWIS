@@ -9,6 +9,7 @@ import {
 import { EvidenceModal as CommonEvidenceModal } from '../components/common/EvidenceModal';
 import { WellContextComparison } from '../components/common/WellContextComparison';
 import { getWellById, getEvidenceForEvent } from '../services/nwisDataService';
+import { useNwis } from '../context/NwisContext';
 
 // ─── Constants ─────────────────────────────────────────────────────────────────
 

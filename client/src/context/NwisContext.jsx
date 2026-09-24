@@ -39,7 +39,8 @@ export const NwisProvider = ({ children, initialTheme = 'dark', navigateToTab })
         setTheme,
         navigateToWell,
         navigateToEvent,
-        navigateToRisk
+        navigateToRisk,
+        navigateToTab
       }}
     >
       {children}

@@ -391,7 +391,7 @@ function RiskEvidencePanel({ category, onViewEvidence, onOpenWell }) {
         Risk Evidence — {category.name}
       </h3>
       <div className="space-y-3">
-        {category.evidence.map((ev, i) => (
+        {(category.evidence || []).map((ev, i) => (
           <div key={i} className="flex items-center justify-between gap-4 p-3 bg-gray-50 dark:bg-[#0A0A0A] border border-gray-100 dark:border-gray-800 rounded">
             <div className="flex gap-4 text-xs">
               <div><div className="text-gray-500 uppercase font-bold">Well</div><div className="font-bold text-black dark:text-white">{ev.wellId}</div></div>
